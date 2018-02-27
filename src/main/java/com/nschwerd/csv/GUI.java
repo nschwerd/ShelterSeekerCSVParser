@@ -40,9 +40,14 @@ public class GUI extends JFrame{
     public static void main(String[] args) {
         System.out.println("Starting CSV parser");
 
-        FileInputStream serviceAccount;
+        FileInputStream serviceAccount = null;
         try {
-            serviceAccount = new FileInputStream("gatech-shelterseeker-firebase-adminsdk-3ypau-929b2b2768.json");
+            JFileChooser jfcFB = new JFileChooser();
+            jfcFB.setDialogTitle("Select Firebase account key");
+            jfcFB.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            jfcFB.setFileFilter(new FileNameExtensionFilter("Firebase json", "json"));
+            jfcFB.showOpenDialog(null);
+            serviceAccount = new FileInputStream(jfcFB.getSelectedFile());
             FirebaseOptions options = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.fromStream(serviceAccount)).setDatabaseUrl("https://gatech-shelterseeker.firebaseio.com").build();
             FirebaseApp.initializeApp(options);
         } catch (Exception e) {
