@@ -3,7 +3,7 @@ package com.nschwerd.csv;
 public class Shelter {
     public Shelter() {};
     
-    public Shelter(String id, String n, String capS, String res, String addr, String note, String ph, int capN, double lat, double lon, Gender gen, boolean vet) {
+    public Shelter(String id, String n, String capS, String res, String addr, String note, String ph, int capN, double lat, double lon, Gender gen, AgeRest age, boolean vet) {
         uid = id;
         name = n;
         capacityStr = capS;
@@ -15,6 +15,7 @@ public class Shelter {
         this.lat = lat;
         this.lon = lon;
         gender = gen;
+        age = ageRest;
         veteran = vet;
     }
     
@@ -27,7 +28,7 @@ public class Shelter {
         return temp.getUID().equals(uid) && temp.getName().equals(name) && temp.getCapacityStr().equals(capacityStr) &&
                 temp.getRestrictions().equals(restrictions) && temp.getAddress().equals(address) && temp.getNotes().equals(notes) &&
                 temp.getPhone().equals(phone) && temp.getCapacityNum() == capacityNum && temp.getLat() == lat &&
-                temp.getLon() == lon && temp.getGender().equals(gender) && temp.getVeteran() == veteran;
+                temp.getLon() == lon && temp.getGender().equals(gender) && temp.getAgeRest().equals(ageRest) && temp.getVeteran() == veteran;
     }
     
     public String getUID() {
@@ -96,6 +97,12 @@ public class Shelter {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
+    public AgeRest getAgeRest() {
+        return ageRest;
+    }
+    public void setAgeRest(AgeRest ageRest) {
+        this.ageRest = ageRest;
+    }
     public boolean getVeteran() {
         return veteran;
     }
@@ -108,9 +115,14 @@ public class Shelter {
         MALE, FEMALE, ALL;
     }
     
+    public enum AgeRest {
+        FAMILIESWITHNEWBORNS, CHILDREN, YOUNGADULTS, ALL;
+    }
+    
     private String uid, name, capacityStr, restrictions, address, notes, phone;
     private int capacityNum;
     private double lat, lon;
     private Gender gender;
+    private AgeRest ageRest;
     private boolean veteran;
 }

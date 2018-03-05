@@ -140,6 +140,15 @@ public class GUI extends JFrame{
             else
                 s.setGender(Shelter.Gender.ALL);
             
+            if (Pattern.matches(".*[cC]hildren.*", s.getRestrictions()))
+                s.setAgeRest(Shelter.AgeRest.CHILDREN);
+            else if (Pattern.matches(".*[nN]ewborns.*", s.getRestrictions())) 
+                s.setAgeRest(Shelter.AgeRest.FAMILIESWITHNEWBORNS);
+            else if (Pattern.matches(".*[yY]oung\\s?[aA]dults?.*", s.getRestrictions()))
+                s.setAgeRest(Shelter.AgeRest.YOUNGADULTS);
+            else
+                s.setAgeRest(Shelter.AgeRest.ALL);
+            
             Shelter t = getShelter(s.getUID());
             
             if (t == null) {
