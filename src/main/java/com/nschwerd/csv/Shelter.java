@@ -110,7 +110,6 @@ public class Shelter {
         this.veteran = veteran;
     }
     
-    
     public enum Gender {
         MALE, FEMALE, ALL;
     }
