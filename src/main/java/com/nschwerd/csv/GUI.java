@@ -133,10 +133,10 @@ public class GUI extends JFrame{
             else 
                 s.setCapacityNum(-1);
             
-            if (Pattern.matches(".*[mM]en.*", s.getRestrictions()))
-                s.setGender(Shelter.Gender.MALE);
-            else if (Pattern.matches(".*[wW]omen.*", s.getRestrictions()))
+            if (Pattern.matches(".*[wW]omen.*", s.getRestrictions()))
                 s.setGender(Shelter.Gender.FEMALE);
+            else if (Pattern.matches(".*[mM]en.*", s.getRestrictions()))
+                s.setGender(Shelter.Gender.MALE);
             else
                 s.setGender(Shelter.Gender.ALL);
             
