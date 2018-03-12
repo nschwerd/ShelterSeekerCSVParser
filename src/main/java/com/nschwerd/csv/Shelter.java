@@ -1,5 +1,7 @@
 package com.nschwerd.csv;
 
+import java.util.ArrayList;
+
 public class Shelter {
     public Shelter() {};
     
@@ -17,6 +19,7 @@ public class Shelter {
         gender = gen;
         age = ageRest;
         veteran = vet;
+        reservations = new ArrayList<>();
     }
     
     public boolean equals(Object o) {
@@ -28,7 +31,19 @@ public class Shelter {
         return temp.getUID().equals(uid) && temp.getName().equals(name) && temp.getCapacityStr().equals(capacityStr) &&
                 temp.getRestrictions().equals(restrictions) && temp.getAddress().equals(address) && temp.getNotes().equals(notes) &&
                 temp.getPhone().equals(phone) && temp.getCapacityNum() == capacityNum && temp.getLat() == lat &&
-                temp.getLon() == lon && temp.getGender().equals(gender) && temp.getAgeRest().equals(ageRest) && temp.getVeteran() == veteran;
+                temp.getLon() == lon && temp.getGender().equals(gender) && temp.getAgeRest().equals(ageRest) && temp.getVeteran() == veteran &&
+                alDeepCompare(reservations,temp.getReservations());
+    }
+    
+    private boolean alDeepCompare(ArrayList<String> a1, ArrayList<String> a2) {
+        if (a1 == null || a2 == null || a1.size() != a2.size())
+            return false;
+        
+        for (String s: a1)
+            if (!a2.contains(s))
+                return false;
+        
+        return true;
     }
     
     public String getUID() {
@@ -109,7 +124,13 @@ public class Shelter {
     public void setVeteran(boolean veteran) {
         this.veteran = veteran;
     }
-    
+    public ArrayList<String> getReservations() {
+        return reservations;
+    }
+    public void setReservations(ArrayList<String> reservations) {
+        this.reservations = reservations;
+    }
+
     public enum Gender {
         MALE, FEMALE, ALL;
     }
@@ -124,4 +145,5 @@ public class Shelter {
     private Gender gender;
     private AgeRest ageRest;
     private boolean veteran;
+    private ArrayList<String> reservations;
 }

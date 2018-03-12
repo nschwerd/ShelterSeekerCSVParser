@@ -147,7 +147,7 @@ public class GUI extends JFrame{
             else if (Pattern.matches(".*[yY]oung\\s?[aA]dults?.*", s.getRestrictions()))
                 s.setAgeRest(Shelter.AgeRest.YOUNGADULTS);
             else
-                s.setAgeRest(Shelter.AgeRest.ALL);
+                s.setAgeRest(Shelter.AgeRest.ALL);            
             
             Shelter t = getShelter(s.getUID());
             
@@ -260,7 +260,7 @@ public class GUI extends JFrame{
     }
     
     private enum DatabaseKey {
-        USER("SSUser"), SHELTER("SSShelter");
+        USER("SSUser"), SHELTER("SSShelter"), RESERVATION("SSReservation");
 
         private String key;
         private DatabaseKey(String k) {
